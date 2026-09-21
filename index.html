@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1000 Click Challenge</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            height: 100vh;
+            background: #111;
+            color: white;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        /* Nút ở giữa */
+        #clickButton {
+            padding: 25px 45px;
+            font-size: 24px;
+            font-weight: bold;
+            color: white;
+            background: #ff3333;
+            border: none;
+            border-radius: 15px;
+            cursor: pointer;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+            transition: 0.1s;
+        }
+
+        #clickButton:hover {
+            background: #ff5555;
+            transform: scale(1.05);
+        }
+
+        #clickButton:active {
+            transform: scale(0.95);
+        }
+
+        /* Bộ đếm bên phải */
+        #counter {
+            position: fixed;
+            right: 30px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 28px;
+            font-weight: bold;
+            background: #222;
+            padding: 15px 20px;
+            border-radius: 12px;
+        }
+
+        /* Dòng chữ khi đạt 1000 */
+        #scammed {
+            display: none;
+            position: absolute;
+            font-size: 60px;
+            font-weight: bold;
+            text-align: center;
+            color: #ff3333;
+        }
+    </style>
+</head>
+
+<body>
+
+    <button id="clickButton">
+        Ấn 1000 lần sẽ có bất ngờ
+    </button>
+
+    <div id="counter">
+        Số lần ấn: <span id="count">0</span>
+    </div>
+
+    <div id="scammed">
+        You've been scammed
+    </div>
+
+    <script>
+        let count = 0;
+
+        const button = document.getElementById("clickButton");
+        const counter = document.getElementById("count");
+        const scammed = document.getElementById("scammed");
+
+        button.addEventListener("click", function () {
+            count++;
+
+            // Cập nhật số lần ấn
+            counter.textContent = count;
+
+            // Khi đủ 1000 lần
+            if (count >= 1000) {
+                button.style.display = "none";
+                document.getElementById("counter").style.display = "none";
+                scammed.style.display = "block";
+            }
+        });
+    </script>
+
+</body>
+</html>
